@@ -1,0 +1,13 @@
+---
+// Placeholder — will be replaced by builder-home agent
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { seoMeta } from '../data/siteData';
+
+const meta = seoMeta.home;
+---
+
+<BaseLayout title={meta.title} description={meta.description}>
+  <div class="flex items-center justify-center py-32 text-center">
+    <p class="text-lg text-gray-500">Home page — coming soon</p>
+  </div>
+</BaseLayout>

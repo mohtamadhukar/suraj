@@ -1,0 +1,103 @@
+---
+import { navigation, company } from '../data/siteData';
+
+interface Props {
+  currentPage: string;
+}
+
+const { currentPage } = Astro.props;
+
+function isActive(href: string): boolean {
+  if (href === '/') return currentPage === '/';
+  return currentPage.startsWith(href);
+}
+---
+
+<nav class="sticky top-0 z-50 bg-white shadow-sm" id="navbar">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2">
+        <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-white font-bold text-lg">S</div>
+        <span class="text-xl font-bold text-gray-900">{company.name}</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex md:items-center md:gap-1">
+        {navigation.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              'rounded-md px-3 py-2 text-sm font-medium transition-colors',
+              isActive(item.href)
+                ? 'bg-primary/10 text-primary'
+                : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900',
+            ]}
+          >
+            {item.label}
+          </a>
+        ))}
+        <a
+          href="/contact"
+          class="ml-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-700"
+        >
+          Get a Quote
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <button
+        id="mobile-menu-btn"
+        class="md:hidden rounded-md p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <svg id="menu-icon-open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="menu-icon-close" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100">
+    <div class="space-y-1 px-4 pb-4 pt-2">
+      {navigation.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'block rounded-md px-3 py-2 text-base font-medium transition-colors',
+            isActive(item.href)
+              ? 'bg-primary/10 text-primary'
+              : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900',
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+      <a
+        href="/contact"
+        class="mt-2 block rounded-md bg-primary px-3 py-2 text-center text-base font-medium text-white hover:bg-primary-700"
+      >
+        Get a Quote
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+
+  btn?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('hidden') === false;
+    iconOpen?.classList.toggle('hidden', isOpen);
+    iconClose?.classList.toggle('hidden', !isOpen);
+    btn.setAttribute('aria-expanded', String(isOpen));
+  });
+</script>
