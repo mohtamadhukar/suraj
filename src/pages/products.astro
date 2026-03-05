@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { productCategories, seoMeta } from '../data/siteData';
+
+const meta = seoMeta.products;
+---
+
+<BaseLayout title={meta.title} description={meta.description}>
+  <HeroSection
+    title="Our Products"
+    subtitle="Precision-engineered plastic components, assembled table fans, and custom OEM manufacturing solutions."
+    backgroundImage="/images/hero-home.svg"
+  />
+
+  {productCategories.map((category) => (
+    <section class="py-16" id={category.id}>
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <SectionHeading title={category.title} subtitle={category.description} />
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {category.products.map((product) => (
+            <ProductCard
+              id={product.id}
+              name={product.name}
+              specs={product.specs}
+              image={product.image}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- CTA Section -->
+  <section class="bg-primary py-16 text-center text-white">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Need a Custom Solution?</h2>
+      <p class="mt-4 text-lg text-blue-200">
+        We specialize in custom OEM manufacturing. Share your requirements and we'll provide a detailed quote.
+      </p>
+      <a
+        href="/contact"
+        class="mt-8 inline-block rounded-md bg-secondary px-8 py-3 text-base font-semibold text-gray-900 shadow-lg transition-colors hover:bg-secondary-300"
+      >
+        Request a Quote
+      </a>
+    </div>
+  </section>
+</BaseLayout>

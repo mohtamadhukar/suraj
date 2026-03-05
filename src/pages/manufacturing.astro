@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import StatsBar from '../components/StatsBar.astro';
+import { manufacturing, seoMeta } from '../data/siteData';
+
+const meta = seoMeta.manufacturing;
+---
+
+<BaseLayout title={meta.title} description={meta.description}>
+  <HeroSection
+    title="Manufacturing & Infrastructure"
+    subtitle="State-of-the-art facility with advanced machinery and rigorous quality control processes."
+    backgroundImage="/images/hero-home.svg"
+  />
+
+  <!-- Factory Overview -->
+  <section class="py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionHeading title="Our Facility" />
+      <div class="grid items-center gap-10 lg:grid-cols-2">
+        <div>
+          <img
+            src={manufacturing.factoryImage}
+            alt="Suraj Plastics manufacturing facility"
+            class="rounded-lg shadow-md"
+            loading="lazy"
+          />
+        </div>
+        <div>
+          <p class="text-lg leading-relaxed text-gray-700">
+            {manufacturing.factoryDescription}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Production Capacity Stats -->
+  <StatsBar stats={manufacturing.capacityStats} dark={true} />
+
+  <!-- Machinery & Equipment -->
+  <section class="bg-gray-50 py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionHeading title="Machinery & Equipment" subtitle="Our facility houses advanced equipment to handle projects of any scale and complexity." />
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {manufacturing.machinery.map((item) => (
+          <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+            <div class="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.049.58.025 1.193-.14 1.743" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900">{item.name}</h3>
+            <p class="mt-2 text-sm text-gray-600">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Quality Control Process -->
+  <section class="py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionHeading title="Quality Control Process" subtitle="Every product passes through our rigorous 5-step quality assurance pipeline." />
+      <div class="mx-auto max-w-3xl">
+        {manufacturing.qualityProcess.map((item, index) => (
+          <div class="relative flex gap-6 pb-10 last:pb-0">
+            {/* Connector line */}
+            {index < manufacturing.qualityProcess.length - 1 && (
+              <div class="absolute left-5 top-10 h-full w-0.5 bg-primary/20"></div>
+            )}
+            {/* Step number */}
+            <div class="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-white">
+              {item.step}
+            </div>
+            {/* Content */}
+            <div class="pt-1">
+              <h3 class="text-lg font-semibold text-gray-900">{item.title}</h3>
+              <p class="mt-1 text-sm text-gray-600">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-primary py-16 text-center text-white">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Ready to Manufacture with Us?</h2>
+      <p class="mt-4 text-lg text-blue-200">
+        From prototyping to bulk production, our team is ready to bring your vision to life.
+      </p>
+      <a
+        href="/contact"
+        class="mt-8 inline-block rounded-md bg-secondary px-8 py-3 text-base font-semibold text-gray-900 shadow-lg transition-colors hover:bg-secondary-300"
+      >
+        Get in Touch
+      </a>
+    </div>
+  </section>
+</BaseLayout>
