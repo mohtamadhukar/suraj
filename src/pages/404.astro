@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page Not Found — Suraj Plastics" description="The page you are looking for does not exist.">
+  <section class="flex min-h-[60vh] items-center justify-center px-4 py-20">
+    <div class="text-center">
+      <p class="text-6xl font-extrabold text-primary">404</p>
+      <h1 class="mt-4 text-3xl font-bold text-gray-900 sm:text-4xl">Page Not Found</h1>
+      <p class="mt-4 text-lg text-gray-600">
+        Sorry, the page you are looking for doesn't exist or has been moved.
+      </p>
+      <div class="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+        <a
+          href="/"
+          class="inline-block rounded-md bg-primary px-6 py-3 text-base font-semibold text-white shadow transition-colors hover:bg-primary-700"
+        >
+          Back to Home
+        </a>
+        <a
+          href="/contact"
+          class="inline-block rounded-md border border-primary px-6 py-3 text-base font-semibold text-primary transition-colors hover:bg-primary/5"
+        >
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
