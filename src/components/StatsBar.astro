@@ -13,7 +13,7 @@ const { stats, dark = true } = Astro.props;
       {stats.map((stat) => (
         <div class="text-center">
           <div class="text-3xl font-extrabold sm:text-4xl">{stat.value}</div>
-          <div class:list={['mt-1 text-sm font-medium', dark ? 'text-blue-200' : 'text-gray-500']}>
+          <div class:list={['mt-1 text-sm font-medium', dark ? 'text-primary-200' : 'text-gray-500']}>
             {stat.label}
           </div>
         </div>
