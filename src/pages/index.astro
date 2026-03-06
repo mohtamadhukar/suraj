@@ -9,9 +9,9 @@ import { company, productCategories, seoMeta } from '../data/siteData';
 const meta = seoMeta.home;
 
 const categoryImages: Record<string, string> = {
-  'plastic-parts': '/images/products/fan-blade.svg',
-  'table-fans': '/images/products/table-fan-16.svg',
-  'custom-oem': '/images/products/custom-part.svg',
+  'plastic-parts': '/images/products/fan-blade.jpg',
+  'table-fans': '/images/products/table-fan-16.jpg',
+  'custom-oem': '/images/products/custom-part.jpg',
 };
 
 const whyChooseUsIcons: Record<string, string> = {
@@ -27,7 +27,7 @@ const whyChooseUsIcons: Record<string, string> = {
   <HeroSection
     title={company.tagline}
     subtitle={company.description}
-    backgroundImage="/images/hero-home.svg"
+    backgroundImage="/images/hero-home.jpg"
     ctaText="Request a Quote"
     ctaLink="/contact"
   />
@@ -47,7 +47,7 @@ const whyChooseUsIcons: Record<string, string> = {
           <CategoryCard
             title={cat.title}
             description={cat.description}
-            image={categoryImages[cat.id] || '/images/products/fan-blade.svg'}
+            image={categoryImages[cat.id] || '/images/products/fan-blade.jpg'}
             href="/products"
           />
         ))}
@@ -59,7 +59,7 @@ const whyChooseUsIcons: Record<string, string> = {
   <section class="py-16">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <SectionHeading
-        title="Why Choose Suraj Plastics"
+        title="Why Choose Suraj Industries"
         subtitle="Trusted by India's leading brands for over 25 years."
       />
       <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
